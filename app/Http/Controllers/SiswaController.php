@@ -73,4 +73,25 @@ class SiswaController extends Controller
         Auth::logout();
         return view('login');
     }
+
+    function cari(Request $request) {
+        if($request->ajax()) {
+            $output = '';
+            $datas = CalonSiswa::where('name', 'LIKE', '%'.$request->cari.'%')->get();
+            foreach($datas as $data) {
+                $output .= "<tr>
+                <td scope='row'>" . 1 ."</td>
+                <td>" . $data->name . "</td>
+                <td>" . $data->alamat . "</td>
+                <td>" . $data->jenis_kelamin . "</td>
+                <td>" . $data->agama . "</td>
+                <td>" . $data->sekolah_asal . "</td>
+                <td><a href='/edit/" . $data->id . "'>Edit</td>
+               <td><a href='/hapus/" . $data->id . "'>Hapus</td>
+                </tr>";
+            }
+            return response()->json($output);
+        }
+            
+    }
 }

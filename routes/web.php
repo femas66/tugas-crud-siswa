@@ -15,3 +15,5 @@ Route::post('/edit-siswa', [SiswaController::class, 'edit']);
 Route::get('/login', [SiswaController::class, 'viewLogin'])->name('login');
 Route::post('/login', [SiswaController::class, 'actionLogin'])->name('actionLogin');
 Route::get('/logout', [SiswaController::class, 'logout'])->name('logout');
+
+Route::get('/cari', [SiswaController::class, 'cari'])->name('cari');
